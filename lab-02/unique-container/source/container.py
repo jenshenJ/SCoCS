@@ -47,9 +47,8 @@ class UniqueContainer:
         
 
     def switch(self, new_login: str):
-       
-            
-            self.login(new_login)
+        self.save()
+        self.login(new_login)
 
     def add(self, elems: list):
         for elem in elems:
