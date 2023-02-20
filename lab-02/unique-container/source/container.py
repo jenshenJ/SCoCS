@@ -10,7 +10,7 @@ class UniqueContainer:
         pass
 
     
-    def login(self, username):
+    def login(self, username: str):
         self.username = username
         try:
             self.file = open(join('..', 'data', self.username), 'r+')
@@ -26,7 +26,7 @@ class UniqueContainer:
         self.file.write(data_str)
 
 
-    def switch(self, new_login):
+    def switch(self, new_login: str):
         if self.data != set(self.file.read().split('||')):
             print('You have unsaved changes. Do you want to save them? (Y/N)')
             option = ''
@@ -39,13 +39,20 @@ class UniqueContainer:
             
             self.login(new_login)
 
-    def add(self, elems):
+    def add(self, elems: list):
         for elem in elems:
             self.data.add(elem)
 
-    def remove(self, elem):
+    def remove(self, elem: str):
         if elem in self.data:
             self.data.remove(elem)
-            print("Element is sucsessfully delete")
+            print('Element is sucsessfully delete')
         else:
-            print("There is no element", elem, "in container")
+            print('There is no element', elem, 'in container')
+
+    def find(self, elems: list):
+        for elem in elems:
+            if elem in self.data:
+                print('Element ', elem, 'exists in container')
+            else:
+                print('Element', elem, 'hasn\'t found')
