@@ -1,8 +1,9 @@
-from container import UniqueContainer
+from cli import CliModule
 
-container = UniqueContainer()
+app = CliModule()
+app.run()
 
-login = input("Enter username: ")
+
 
 
 

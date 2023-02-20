@@ -1,15 +1,15 @@
-from os import listdir, path
+from os import listdir, mkdir, path
 from os.path import isfile, join
-import os
+import re
 
 DATA_PATH = '../data/'
 
 class UniqueContainer:
     def __init__(self):
         self._data = set()
-        
+
         if not path.exists('../data'):
-            os.mkdir('../data')
+            mkdir('../data')
 
         self._user_list = [f for f in listdir(DATA_PATH) if isfile(join(DATA_PATH, f))]
         pass
@@ -20,6 +20,8 @@ class UniqueContainer:
         try:
             self._file = open(join('..', 'data', self._username), 'r+')
             self._data = set(self._file.read().split('||'))
+            if '\n' in self._data:
+                self._data.remove('\0')
         except FileNotFoundError:
             self._file = open(join('..', 'data', self._username), 'w+') 
             self._user_list.append(self._username)    
@@ -76,3 +78,9 @@ class UniqueContainer:
         print('Elements of container:')
         for elem in self._data:
             print(elem)
+
+
+    def grep(self, reg: str):
+        match_list = list(filter(lambda key: re.match(reg, key), self._data))
+        for item in match_list:
+            print(item)
