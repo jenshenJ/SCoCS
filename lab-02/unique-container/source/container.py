@@ -38,4 +38,14 @@ class UniqueContainer:
                 self.save()
             
             self.login(new_login)
-    
+
+    def add(self, elems):
+        for elem in elems:
+            self.data.add(elem)
+
+    def remove(self, elem):
+        if elem in self.data:
+            self.data.remove(elem)
+            print("Element is sucsessfully delete")
+        else:
+            print("There is no element", elem, "in container")

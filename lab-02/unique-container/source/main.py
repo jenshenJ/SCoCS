@@ -4,4 +4,5 @@ container = UniqueContainer()
 
 login = input("Enter username: ")
 container.login(login)
-container.switch('user3')
+container.remove("Элемент1")
+container.save()
