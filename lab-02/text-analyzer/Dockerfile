@@ -1,3 +1,3 @@
 FROM python:3.10
-COPY . .
-CMD [ "python", "source/main.py" ]
+COPY ./source ./app
+CMD python source/main.py
