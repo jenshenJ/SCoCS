@@ -20,7 +20,7 @@ class UniqueContainer:
             self.user_list.append(self.username)    
     
     def save(self):
-         if self.data != set(self.file.read().split('||')):
+         if len(self.data & set(self.file.read().split('||'))) != len(self.data):
             print('You have unsaved changes. Do you want to save them? (Y/N)')
             option = ''
             options = ['y', 'Y', 'N', 'n']
