@@ -18,3 +18,12 @@ def average_chars_counter(text: str):
     new_text = ''.join(ch for ch in new_text if ch.isalnum())         #deleting al non-alphabet-numeric symbols
     return len(new_text) / sentence_count 
 
+def word_len_counter(text: str):
+    new_text = text.lower()                                           #ignore register
+    new_text = re.sub(r'\b[0-9]+\b\s*', '', text)                     #deleting from text words with numbers only
+    word_count = len(re.findall(r'\w+', new_text))          
+    new_text = ''.join(ch for ch in new_text if ch.isalnum())         #deleting al non-alphabet-numeric symbols
+    return len(new_text) / word_count
+
+      
+
