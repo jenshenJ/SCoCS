@@ -25,5 +25,28 @@ def word_len_counter(text: str):
     new_text = ''.join(ch for ch in new_text if ch.isalnum())         #deleting al non-alphabet-numeric symbols
     return len(new_text) / word_count
 
-      
+def top_counter(text: str, k: int, n: int):
+    substring_dict = collections.defaultdict(int)
+    if k == 0:                                                  #setting default values
+        k = 10
+    if n == 0:
+        n = 4
+
+    for i, j in enumerate(text):
+        if i + n < len(text):
+            substring_dict[text[i:i+n]] += 1
+        else:
+            break
+        
+    if len(substring_dict) == 0:
+        print('There is no any ', n, '-grams in text')
+        return
+    else:
+        substring_dict = dict(substring_dict)
+        sorted_dict = dict(sorted(substring_dict.items(), key=lambda item : item[1], reverse=True))
+        sorted_list = list(sorted_dict)
+        k = min(len(sorted_list), k)
+        for i in range(k):
+            print(str(i + 1), '. ', sorted_list[i],' - ' , sorted_dict[sorted_list[i]],sep='')
+            
 
