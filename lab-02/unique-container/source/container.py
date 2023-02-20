@@ -16,18 +16,11 @@ class UniqueContainer:
             self.file = open(join('..', 'data', self.username), 'r+')
             self.data = set(self.file.read().split('||'))
         except FileNotFoundError:
-            self.file = open(join('..', 'data', self.username), 'w+')     
+            self.file = open(join('..', 'data', self.username), 'w+') 
+            self.user_list.append(self.username)    
     
     def save(self):
-        self.file.close()
-        file_path = join('..', 'data', self.username)
-        self.file = open(file_path, 'w')
-        data_str = '||'.join(list(self.data))
-        self.file.write(data_str)
-
-
-    def switch(self, new_login: str):
-        if self.data != set(self.file.read().split('||')):
+         if self.data != set(self.file.read().split('||')):
             print('You have unsaved changes. Do you want to save them? (Y/N)')
             option = ''
             options = ['y', 'Y', 'N', 'n']
@@ -35,7 +28,26 @@ class UniqueContainer:
                 option = input()
             
             if option == 'y' or option == 'Y':
-                self.save()
+                self.file.close()
+                file_path = join('..', 'data', self.username)
+                self.file = open(file_path, 'w')
+                data_str = '||'.join(list(self.data))
+                self.file.write(data_str)
+
+        
+    def load(self, filename: str):
+        file_path = join('..', 'data', self.username)
+        if isfile(file_path):
+            self.save()
+            self.login(filename)
+            print('Container', self.username, 'has been succesfully loaded')
+        else:
+            print("No such container")
+
+        
+
+    def switch(self, new_login: str):
+       
             
             self.login(new_login)
 
