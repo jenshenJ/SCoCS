@@ -1,6 +1,6 @@
 import re
 import collections
-from abbreviations import SINGLE_ABREBIATIONS, DOUBLE_ABREVIATIONS
+from ..source.abbreviations import SINGLE_ABREBIATIONS, DOUBLE_ABREVIATIONS
 
 def count_sentences(text: str):
     new_text = re.sub(r'[.!?][^.!?]', r'||', text)
@@ -33,12 +33,8 @@ def count_word_len(text: str):
     new_text = ''.join(ch for ch in new_text if ch.isalnum())         #deleting al non-alphabet-numeric symbols
     return len(new_text) / word_count
 
-def count_ngrams_top(text: str, k: int, n: int):
+def count_ngrams_top(text: str, k: int = 10, n: int = 4):
     substring_dict = collections.defaultdict(int)
-    if k == 0:                                                    #setting default values
-        k = 10
-    if n == 0:
-        n = 4
 
     for i, j in enumerate(text):
         if i + n < len(text):
