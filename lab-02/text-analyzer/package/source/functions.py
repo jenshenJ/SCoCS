@@ -24,6 +24,8 @@ def count_average_chars(text: str):
     new_text = text.lower()                                           #ignore register
     new_text = re.sub(r'\b[0-9]+\b\s*', '', new_text)                 #deleting from text words with numbers only
     new_text = ''.join(ch for ch in new_text if ch.isalnum())         #deleting al non-alphabet-numeric symbols
+    if sentence_count == 0:
+        return 0
     return len(new_text) / sentence_count 
 
 def count_word_len(text: str):
@@ -31,6 +33,8 @@ def count_word_len(text: str):
     new_text = re.sub(r'\b[0-9]+\b\s*', '', text)                     #deleting from text words with numbers only
     word_count = len(re.findall(r'\w+', new_text))          
     new_text = ''.join(ch for ch in new_text if ch.isalnum())         #deleting al non-alphabet-numeric symbols
+    if word_count == 0:
+        return 0
     return len(new_text) / word_count
 
 def count_ngrams_top(text: str, k: int = 10, n: int = 4):
