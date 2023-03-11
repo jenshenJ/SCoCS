@@ -15,7 +15,7 @@ class CLI:
             return
         
         command = command_with_args[0]
-        args = command_with_args[1] if len(command_with_args > 1) else ''
+        args = command_with_args[1] if len(command_with_args) > 1 else ''
 
         function = self._commands.get(command)
 
