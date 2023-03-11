@@ -23,7 +23,7 @@ class App:
         controller = ContainerController()
         cli = CLI()
 
-        commands = ['add', 'remove', 'find', 'list', 'grep', 'save', 'switch']
+        commands = ['add', 'remove', 'find', 'list', 'load','grep', 'save', 'switch']
         for command in commands:
             cli.add_command(command, getattr(controller, command))
 

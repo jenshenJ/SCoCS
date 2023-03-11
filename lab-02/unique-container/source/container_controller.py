@@ -41,7 +41,7 @@ class ContainerController:
                                   lambda key: print(f'Key {key} is {"" if self._container_service.find(key) else " not"} exist')
                                   )
 
-    def list(self):
+    def list(self, args):
         keys = self._container_service.list()
         if not keys:
             print('Container is empty')
@@ -78,14 +78,14 @@ class ContainerController:
         option = input('Do you want to save container?(y/n): ')
 
         if option.lower() in ['y', 'yes']:
-            self.save()
+            self._container_service.save()
     
     def _ask_for_load(self):
         if self._container_service.is_exists():
             option = input('Container was found. Do you want to load it?(y/n): ')
 
             if option.lower() in ['y', 'yes']:
-                self.load()
+                self._container_service.load()
 
     def switch(self, args=None):
         if self._container_service:

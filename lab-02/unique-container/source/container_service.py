@@ -35,6 +35,6 @@ class ContainerService:
 	
 	def load(self):
 		with open(self._container_filename, 'rb') as file:
-			loaded_data = pickle.load(self._container_filename)
+			loaded_data = pickle.load(file)
 			self._container = self._container | loaded_data
 
