@@ -41,7 +41,7 @@ class ContainerController:
                                   lambda key: print(f'Key {key} is {"" if self._container_service.find(key) else " not"} exist')
                                   )
 
-    def list(self, args):
+    def list(self, _):
         keys = self._container_service.list()
         if not keys:
             print('Container is empty')
@@ -66,11 +66,11 @@ class ContainerController:
         
         print(' '.join(result))
     
-    def load(self):
+    def load(self, _):
         self._container_service.load()
         print('Loaded succesfully')
 
-    def save(self, args):
+    def save(self, _):
         self._container_service.save()
         print('Saved succesfully')
 

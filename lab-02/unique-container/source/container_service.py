@@ -1,15 +1,17 @@
 import os 
-import pickle
 import re
+from db_service import DbService
 
 class ContainerService:
 	_container: set[str] = set()
 	_username: str
 	_container_filename: str
+	_database: DbService
 
 	def __init__(self, username: str):
 		self._username = username
 		self._container_filename = f'{username}-container.dmp'
+		self._database = DbService()
 	
 	def add(self, key):
 		self._container.add(key)
@@ -27,14 +29,12 @@ class ContainerService:
 		return list(filter(lambda key: re.match(regex, key), self._container))
 	
 	def save(self):
-		with open(self._container_filename, 'wb') as file:
-			pickle.dump(self._container, file)
+		self._database.save(self._container, self._container_filename)
 	
 	def is_exists(self):
 		return os.path.exists(self._container_filename)
 	
 	def load(self):
-		with open(self._container_filename, 'rb') as file:
-			loaded_data = pickle.load(file)
+		if self.is_exists():
+			loaded_data = self._database.load(self._container_filename)
 			self._container = self._container | loaded_data
-
