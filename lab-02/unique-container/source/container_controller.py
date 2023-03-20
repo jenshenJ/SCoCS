@@ -1,5 +1,6 @@
 import re
 from container_service import ContainerService
+from db_service import DbService
 
 class ContainerController:
     _container_service: ContainerService = None
@@ -103,6 +104,6 @@ class ContainerController:
             self._ask_for_save()
         
         username = input('Enter new username: ')
-        self._container_service = ContainerService(username)
+        self._container_service = ContainerService(username, DbService())
 
         self._ask_for_load()

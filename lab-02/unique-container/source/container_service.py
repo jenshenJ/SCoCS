@@ -1,17 +1,24 @@
 import os 
 import re
-from db_service import DbService
+
+
+class IDbService():
+    def save(self, container: set[str], container_filename: str):
+        pass
+
+    def load(self, container_filename) -> set[str]:
+        pass
 
 class ContainerService:
 	_container: set[str] = set()
 	_username: str
 	_container_filename: str
-	_database: DbService
+	_database: IDbService = None
 
-	def __init__(self, username: str):
+	def __init__(self, username: str, db_service: IDbService):
 		self._username = username
 		self._container_filename = f'{username}-container.dmp'
-		self._database = DbService()
+		self._database = db_service
 	
 	def add(self, key):
 		self._container.add(key)

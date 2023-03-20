@@ -1,6 +1,6 @@
 import pickle
 
-class DbService():
+class DbService:
     def save(self, container: set[str], container_filename: str):
         with open(container_filename, 'wb') as file:
             pickle.dump(container, file)
