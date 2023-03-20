@@ -2,7 +2,7 @@ from package.source.functions import count_sentences
 from package.source.functions import count_non_declarative
 from package.source.functions import count_average_chars
 from package.source.functions import count_word_len
-from package.source.functions import count_ngrams_top
+from package.source.functions import print_ngrams_top
 
 def main():
     try:
@@ -19,10 +19,10 @@ def main():
 
         try:
             n, k = map(int, input('Enter N and K to get topK repeated N-grams in the text: ').split())
-            count_ngrams_top(text, k, n)
+            print_ngrams_top(text, k, n)
 
         except ValueError:
-            count_ngrams_top(text)
+            print_ngrams_top(text)
 
     except KeyboardInterrupt :
         print("See you later!")

@@ -26,6 +26,7 @@ class ContainerController:
     def _remove_key(self, key: str):
         if self._container_service.find(key):
             self._container_service.remove(key)
+            print(f'Key {key} succesfully removed')
         else:
             print(f'Key {key} not found')
 
@@ -35,7 +36,7 @@ class ContainerController:
             print('There is no any key to remove provided')
             return
         
-        self._split_and_apply(args, self._container_service.remove)
+        self._split_and_apply(args, self._remove_key)
     
 
     def find(self, args: str):

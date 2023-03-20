@@ -9,8 +9,9 @@ class IDbService():
     def load(self, container_filename) -> set[str]:
         pass
 
+
 class ContainerService:
-	_container: set[str] = set()
+	_container: set[str]
 	_username: str
 	_container_filename: str
 	_database: IDbService = None
@@ -19,6 +20,7 @@ class ContainerService:
 		self._username = username
 		self._container_filename = f'{username}-container.dmp'
 		self._database = db_service
+		self._container = set()
 	
 	def add(self, key):
 		self._container.add(key)
