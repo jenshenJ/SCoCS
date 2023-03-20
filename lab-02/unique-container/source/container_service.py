@@ -16,23 +16,30 @@ class ContainerService:
 	def add(self, key):
 		self._container.add(key)
 	
+
 	def remove(self, key):
 		self._container.remove(key)
+
 
 	def list(self):
 		return list(self._container)
 	
+
 	def find(self, key):
 		return key in self._container
 	
+
 	def grep(self, regex):
 		return list(filter(lambda key: re.match(regex, key), self._container))
 	
+
 	def save(self):
 		self._database.save(self._container, self._container_filename)
 	
+
 	def is_exists(self):
 		return os.path.exists(self._container_filename)
+	
 	
 	def load(self):
 		if self.is_exists():
