@@ -36,7 +36,7 @@ class ContainerController:
             print('There is no any key to remove provided')
             return
         
-        self._split_and_apply(args, self._remove_key)
+        self._split_and_apply(args, self._remove_key)ц
     
 
     def find(self, args: str):
