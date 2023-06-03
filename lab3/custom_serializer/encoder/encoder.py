@@ -70,22 +70,22 @@ class Encoder:
 
     @staticmethod
     def __encode_function(obj):
-        class_ = getattr(
-            inspect.getmodule(obj),
-            obj.__qualname__.split(".<locals>", 1)[0].rsplit(".", 1)[0],
-        )
+        
+    #    class_ = getattr(
+    #         inspect.getmodule(obj),
+    #         obj.__qualname__.split(".<locals>", 1)[0].rsplit(".", 1)[0],
+    #     )
         encoded_function = {'__type__': 'function' if isinstance(obj, FunctionType) else 'method',
                             '__code__': Encoder.encode(obj.__code__),
                             '__name__': obj.__name__,
                             '__globals__': {
                                 key: Encoder.encode(value)
                                 for (key, value) in obj.__globals__.items() if
-                                key in obj.__code__.co_names and value is not class_
+                                key in obj.__code__.co_names
                                 and key != obj.__code__.co_name
                             },
                             '__defaults__': obj.__defaults__,
-                            '__closure__': Encoder.encode(tuple(cell for cell in obj.__closure__ if
-                                                                cell.cell_contents is not class_)
+                            '__closure__': Encoder.encode(tuple(cell for cell in obj.__closure__)
                                                           if obj.__closure__ is not None else tuple()),
                             '__dict__': obj.__dict__
                             }

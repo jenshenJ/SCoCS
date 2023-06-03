@@ -108,7 +108,7 @@ class TestFunction(unittest.TestCase):
         test_result = decoded(x)
 
         self.assertEqual(result, test_result)
-
+    
     def test_function_with_another_function(self):
         encoded = Encoder.encode(function_use_return_5)
         decoded = Decoder.decode(encoded)
