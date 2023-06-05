@@ -1,61 +1,68 @@
 /* CSS стили для корзины */
 .cart {
-  margin-bottom: 20px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
-.cart h1 {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
+.cart_item {
+  display: flex;
+
+  align-items: start;
+  margin-bottom: 60px;
+}
+.cart_item_image {
+  display: block;
+  margin-right: 60px;
 }
 
-.cart table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.cart table th,
-.cart table td {
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-}
-
-.cart table th {
-  text-align: left;
-}
-
-.cart table td.num {
-  text-align: right;
-}
-
-.cart table td a {
-  color: #000;
-  text-decoration: none;
-}
-
-.cart table td a:hover {
-  text-decoration: underline;
-}
-
-.cart table .total {
+.cart_item_name {
+  font-size: 20px;
   font-weight: bold;
 }
 
-.cart p.text-right {
-  text-align: right;
-  margin-top: 20px;
+.cart_item_product_description {
+  margin-bottom: 60px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
 }
 
-.cart p.text-right .button {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #333;
-  color: #fff;
-  text-decoration: none;
-  margin-right: 10px;
+.cart_item_price {
+  margin-bottom: 95px;
+  font-size: 18px;
+  font-family: "Courier New", Courier, monospace;
 }
 
-.cart p.text-right .button.light {
-  background-color: #ccc;
-  color: #000;
+.total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.cart-button {
+  display: block;
+  height: 40px;
+  width: fit-content;
+  padding-left: 17px;
+  padding-right: 17px;
+  background-color: rgb(255, 94, 0);
+  color: white;
+  border-radius: 30px;
+  line-height: 40px;
+  text-align: center;
+}
+
+.cart-button:hover {
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
+
+.grey {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.cart_buttons {
+  display: flex;
+  gap: 60px;
+
 }

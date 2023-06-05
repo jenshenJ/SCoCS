@@ -25,13 +25,14 @@ class Product(models.Model):
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     weight = models.IntegerField(default=0)
-    stock = models.PositiveIntegerField()
     available = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ('name',)
+        verbose_name = 'Продукт'
+        verbose_name_plural = 'Продукты'
         # index_together = (('id', 'slug'),)
         indexes = [
             models.Index(fields=['id','slug']),

@@ -6,43 +6,43 @@
 {% block content %}
     <link href="{% static '/css/cart.css' %}" rel="stylesheet">
     <h1>Корзина</h1>
-    <table class="cart">
-        <tbody>
+    <div class="cart">
+        <div>
         {% for item in cart %}
             {% with product=item.product %}
-                <tr>
-                    <td>
-                        <a href="{{ product.get_absolute_url }}">
-                            <img src="
+                <div class="cart_item">
+                    <a class="cart_item_image" href="{{ product.get_absolute_url }}">
+                         <img src="
                                 {% if product.image %}
                                     {{ product.image.url }}
                                 {% else %}
                                     {% static 'images/img.png' %}
                                 {% endif %}">
-                        </a>
-                    </td>
-                    <td>{{ product.name }}</td>
-                    
-                    <td class="num">{{ item.price }} руб.</td>
-                    <td>x</td>
-                    <td>{{ item.quantity }}</td>
-                    <td>=</td>
-                    <td class="num">{{ item.total_price }} руб. </td>
-                    <td><a href="{% url 'cart:cart_remove' product.id%}">Удалить</a></td>
-                </tr>
+                    </a>
+                    <div class="cart_item_description">
+                        <div class="cart_item_name">{{ product.name }} - {{product.weight}}г</div>
+                        <div class="cart_item_product_description">{{product.description}}</div>
+                        <div class="cart_item_price">{{ item.price }} руб. x {{ item.quantity }} = {{ item.total_price }} руб.</div>
+                        
+                        <a class="cart-button" href="{% url 'cart:cart_remove' product.id%}">Удалить</a>
+                    </div>
+                </div>
             {% endwith %}
         {% endfor %}
-        <tr class="total">
-            <td>Итого</td>
-            <td colspan="4"></td>
-            <td class="num">{{ cart.get_total_price }} руб.</td>
-        </tr>
-        </tbody>
-    </table>
-    <p class="text-right">
-        <a href="{% url 'shop:product_list' %}" class="button light">Продолжить выбор</a>
-       <a href="{% url 'orders:order_create' %}" class="button">
-        Заказать
-        </a>
+        <div class="total">
+            <div class="total_title">Итого:</div>
+            
+            <div class="total_value">{{ cart.get_total_price }} руб.</div>
+        </div>
+        </div>
+    </div>
+    <div class="cart_buttons">
+        {% if user.is_authenticated %}
+            <a href="{% url 'orders:order_create' %}"  class="cart-button">Оформить заказ</a>
+        {% else %}
+            <a href="/accounts/login"  class="cart-button">Оформить заказ</a>
+        {% endif %}
+
+       <a href="{% url 'shop:product_list' %}"class="cart-button grey">Вернуться в меню</a>
     </p>
 {% endblock %}

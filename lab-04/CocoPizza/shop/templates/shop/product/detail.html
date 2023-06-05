@@ -10,16 +10,20 @@
         <div class="image-container">
             <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/img.png' %}{% endif %}">
             <h1>{{ product.name }}</h1>
+            <div class="cart-description">{{ product.description|linebreaks }}</div>
         </div>
-        <h2><a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h2>
-        <p class="price">{{ product.price }} руб.</p>
-        {{ product.description|linebreaks }}
+        <!-- <h2><a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h2> -->
+        <p class="weight">{{ product.weight }}г.</p>
+
+       
+        
     </div>
 <p class="price">{{ product.price }} руб.</p>
 <form action="{% url 'cart:cart_add' product.id %}" method="post">
-    <label>Количество: </label>
+    <label class="count-label">Количество: </label>
     {{ cart_product_form.quantity }}
     {% csrf_token %}
-    <input type="submit" value="Добавить в корзину">
+    <br>
+    <input class="submit-button" type="submit" value="Добавить в корзину">
 </form>
 {% endblock %}
